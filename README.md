@@ -34,3 +34,7 @@ if action in result.actions:
                                 file_diff_dict,
                                 section)
 ```
+
+Similar changes has to be done in `acquire_actions_and_apply`, `print_result` functions in `ConsoleInteraction.py` file. 
+
+4. For step 3 to be fruitful, make the bears yield the actions they can apply as part of their Results
