@@ -17,24 +17,25 @@ In both of these places `action.is_applicable(result, file_dict, file_diff_dict)
 2. Within the `Result Action` class, the static method `is_applicable` can be removed. Also all the `is_applicable` defined in the currently available actions have to be removed. 
 
 3. In `autoapply_actions` function change the logic from 
-```python
-applicable = action.is_applicable(result, file_dict, file_diff_dict)
-if applicable:
+  ```python
+  applicable = action.is_applicable(result, file_dict, file_diff_dict)
+  if applicable:
     action().apply_from_section(result,
                                 file_dict,
                                 file_diff_dict,
                                 section)
-```
+  ```
 
 to 
-```python 
-if action in result.actions:
+  ```python 
+  if action in result.actions:
     action().apply_from_section(result,
                                 file_dict,
                                 file_diff_dict,
                                 section)
-```
-
+  ```
 Similar changes has to be done in `acquire_actions_and_apply`, `print_result` functions in `ConsoleInteraction.py` file. 
 
 4. For step 3 to be fruitful, make the bears yield the actions they can apply as part of their Results
+
+5. As part of all the steps add/modify tests and documentation. The project is test and documentation heavy.
