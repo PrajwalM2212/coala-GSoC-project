@@ -1,4 +1,4 @@
-# coala-GSoC-project
+# coala: Next generation action system
 
 ### Action System
 
