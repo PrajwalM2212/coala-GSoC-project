@@ -16,7 +16,25 @@ In both of these places `action.is_applicable(result, file_dict, file_diff_dict)
 
 2. Within the `Result Action` class, the static method `is_applicable` can be removed. Also all the `is_applicable` defined in the currently available actions have to be removed. 
 
-3. In `autoapply_actions` function change the logic from 
+3.After modifying the result class to accommodate the actions argument.
+  a. All bears can have IgnoreResultAction, OpenEditorAction and DoNothingAction<br>
+  b. If bears generate a Diff , then they can also have ShowPatchAction, ShowAppliedPatchesAction, ApplyPatchAction<br>
+  c. If external linters are used to create a bear , then depending on output format, the actions can be added by modifying        Linter.py file.  If output format is corrected or unified-diff then it can have the six actions else it will have the          normal 3 actions(IgnoreResultAction, OpenEditorAction and DoNothingAction)<br>
+     This is an example of how the new result can be yielded
+     
+
+        yield Result(self,
+
+             'The code does not comply to PEP8.',
+
+             affected_code=(diff.range(filename),),
+
+             diffs={filename: diff},
+
+             actions = ['IgnoreResultAction', 'OpenEditorAction' , 'DoNothingAction', 'ApplyPatchAction', 'ShowPatchAction',  'ShowAppliedPatchesAction'])
+
+
+4. In `autoapply_actions` function change the logic from 
   ```python
   applicable = action.is_applicable(result, file_dict, file_diff_dict)
   if applicable:
@@ -35,7 +53,5 @@ to
                                 section)
   ```
 Similar changes has to be done in `acquire_actions_and_apply`, `print_result` functions in `ConsoleInteraction.py` file. 
-
-4. For step 3 to be fruitful, make the bears yield the actions they can apply as part of their Results
 
 5. As part of all the steps add/modify tests and documentation. The project is test and documentation heavy.
