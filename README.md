@@ -12,11 +12,11 @@ In both of these places `action.is_applicable(result, file_dict, file_diff_dict)
 
 ### Solution
 
-1. Changing the `Result` and `HiddenResult` classes. Providing for a new argument called `actions` in the `__init__` methods of both `Result` and `HiddenResult` classes. `actions` argument shall hold the list of actions that a bear can apply. Also `from_values` method of `Result` class must be changed to accomodate for the new argument. This should make bears capable of emitting `Results` with list actions they can apply.
+Changing the `Result` and `HiddenResult` classes. Providing for a new argument called `actions` in the `__init__` methods of both `Result` and `HiddenResult` classes. `actions` argument shall hold the list of actions that a bear can apply. Also `from_values` method of `Result` class must be changed to accomodate for the new argument. This should make bears capable of emitting `Results` with list actions they can apply.
 
-2. Within the `Result Action` class, the static method `is_applicable` can be removed. Also all the `is_applicable` defined in the currently available actions have to be removed. 
+Within the `Result Action` class, the static method `is_applicable` can be removed. Also all the `is_applicable` defined in the currently available actions have to be removed. 
 
-3.After modifying the result class to accommodate the actions argument.
+After modifying the result class to accommodate the actions argument.
   a. All bears can have IgnoreResultAction, OpenEditorAction and DoNothingAction<br>
   b. If bears generate a Diff , then they can also have ShowPatchAction, ShowAppliedPatchesAction, ApplyPatchAction<br>
   c. If external linters are used to create a bear , then depending on output format, the actions can be added by modifying        Linter.py file.  If output format is corrected or unified-diff then it can have the six actions else it will have the          normal 3 actions(IgnoreResultAction, OpenEditorAction and DoNothingAction)<br>
@@ -34,7 +34,7 @@ In both of these places `action.is_applicable(result, file_dict, file_diff_dict)
              actions = ['IgnoreResultAction', 'OpenEditorAction' , 'DoNothingAction', 'ApplyPatchAction', 'ShowPatchAction',  'ShowAppliedPatchesAction'])
 
 
-4. In `autoapply_actions` function change the logic from 
+In `autoapply_actions` function change the logic from 
   ```python
   applicable = action.is_applicable(result, file_dict, file_diff_dict)
   if applicable:
@@ -54,4 +54,4 @@ to
   ```
 Similar changes has to be done in `acquire_actions_and_apply`, `print_result` functions in `ConsoleInteraction.py` file. 
 
-5. As part of all the steps add/modify tests and documentation. The project is test and documentation heavy.
+As part of all the steps add/modify tests and documentation. The project is test and documentation heavy.
