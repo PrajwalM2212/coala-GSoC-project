@@ -16,10 +16,10 @@ Changing the `Result` and `HiddenResult` classes. Providing for a new argument c
 
 Within the `Result Action` class, the static method `is_applicable` can be removed. Also all the `is_applicable` defined in the currently available actions have to be removed. 
 
-After modifying the result class to accommodate the actions argument.
-  a. All bears can have IgnoreResultAction, OpenEditorAction and DoNothingAction<br>
-  b. If bears generate a Diff , then they can also have ShowPatchAction, ShowAppliedPatchesAction, ApplyPatchAction<br>
-  c. If external linters are used to create a bear , then depending on output format, the actions can be added by modifying        Linter.py file.  If output format is corrected or unified-diff then it can have the six actions else it will have the          normal 3 actions(IgnoreResultAction, OpenEditorAction and DoNothingAction)<br>
+After modifying the result class to accommodate the actions argument.<br>
+  a. All bears can have IgnoreResultAction, OpenEditorAction and DoNothingAction<br><br>
+  b. If bears generate a Diff , then they can also have ShowPatchAction, ShowAppliedPatchesAction, ApplyPatchAction<br><br>
+  c. If external linters are used to create a bear , then depending on output format, the actions can be added by modifying        Linter.py file.  If output format is corrected or unified-diff then it can have the six actions else it will have the          normal 3 actions(IgnoreResultAction, OpenEditorAction and DoNothingAction)<br><br>
      This is an example of how the new result can be yielded
      
 
