@@ -22,7 +22,7 @@ After modifying the result class to accommodate the actions argument.<br>
   c. If external linters are used to create a bear , then depending on output format, the actions can be added by modifying        Linter.py file.  If output format is corrected or unified-diff then it can have the six actions else it will have the          normal 3 actions(IgnoreResultAction, OpenEditorAction and DoNothingAction)<br><br>
      This is an example of how the new result can be yielded
      
-
+```python
         yield Result(self,
 
              'The code does not comply to PEP8.',
@@ -32,7 +32,7 @@ After modifying the result class to accommodate the actions argument.<br>
              diffs={filename: diff},
 
              actions = ['IgnoreResultAction', 'OpenEditorAction' , 'DoNothingAction', 'ApplyPatchAction', 'ShowPatchAction',  'ShowAppliedPatchesAction'])
-
+```
 
 In `autoapply_actions` function change the logic from 
   ```python
